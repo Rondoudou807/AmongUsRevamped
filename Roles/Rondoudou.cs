@@ -107,8 +107,15 @@ internal static class RondoudouRole
         }
 
         _usesRemaining--;
+        UpdateLocalLabel(player);
 
         var options = Main.NormalOptions;
+        if (options == null)
+        {
+            _usesRemaining++;
+            player.RpcRejectShapeshift();
+            return;
+        }
         _oldPlayerSpeed = options.GetFloat(FloatOptionNames.PlayerSpeedMod);
         _oldCrewVision = options.GetFloat(FloatOptionNames.CrewLightMod);
         _oldImpostorVision = options.GetFloat(FloatOptionNames.ImpostorLightMod);
@@ -176,6 +183,24 @@ internal static class RondoudouRole
             Broadcast("Rondoudou's effect has ended. Movement and vision are restored.");
     }
 
+    public static bool HandleAbilityCommand(PlayerControl player)
+    {
+        if (!AmongUsClient.Instance.AmHost || !IsRondoudou(player))
+            return true;
+
+        TryActivate(player);
+        return false;
+    }
+
+    private static void UpdateLocalLabel(PlayerControl player)
+    {
+        if (player == null || player.Data == null || player.cosmetics == null || player.cosmetics.nameText == null)
+            return;
+
+        player.cosmetics.nameText.text =
+            $"<color=#ff8fd6>{player.Data.PlayerName}</color>\\n<color=#ff8fd6>Rondoudou ({_usesRemaining}/{Options.RondoudouUses.GetInt()})</color>";
+    }
+
     private static void Broadcast(string message)
     {
         if (PlayerControl.LocalPlayer != null)
@@ -202,20 +227,23 @@ internal static class RondoudouRoleStartPatch
     }
 }
 
-// The vanilla Shapeshifter ability is the button shown beside Kill. The host
-// intercepts its command and performs the host-only role effect instead.
-[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckShapeshift))]
-internal static class RondoudouAbilityButtonPatch
+// The vanilla Shapeshifter ability is the button shown beside Kill.
+// Both hooks are needed: CheckShapeshift handles the host's local player,
+// while CmdCheckShapeshift handles a remote player's request on the host.
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckShapeshift))]
+internal static class RondoudouCheckShapeshiftPatch
 {
     public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target,
         [HarmonyArgument(1)] bool shouldAnimate)
-    {
-        if (!AmongUsClient.Instance.AmHost || !RondoudouRole.IsRondoudou(__instance))
-            return true;
+        => RondoudouRole.HandleAbilityCommand(__instance);
+}
 
-        RondoudouRole.TryActivate(__instance);
-        return false;
-    }
+[HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdCheckShapeshift))]
+internal static class RondoudouCmdCheckShapeshiftPatch
+{
+    public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target,
+        [HarmonyArgument(1)] bool shouldAnimate)
+        => RondoudouRole.HandleAbilityCommand(__instance);
 }
 
 [HarmonyPatch(typeof(InnerNetClient), nameof(InnerNetClient.FixedUpdate))]
