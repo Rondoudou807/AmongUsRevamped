@@ -1,0 +1,32 @@
+name: Build Revamped
+
+on:
+  push:
+    branches:
+      - rondoudou-role-hostenly
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Build AmongUsRevamped
+        run: dotnet build AmongUsRevamped.csproj --configuration Release --verbosity minimal
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: AmongUsRevamped-Rondoudou
+          path: bin/Release/net6.0/AmongUsRevamped.dll
+          if-no-files-found: error
+          retention-days: 7
