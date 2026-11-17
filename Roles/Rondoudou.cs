@@ -73,7 +73,21 @@ internal static class RondoudouRole
         if (candidates.Count == 0)
             return;
 
-        var selected = candidates[new System.Random().Next(candidates.Count)];
+        PlayerControl selected = null;
+
+        // Prefer the host's own Shapeshifter so the host sees the local-only
+        // Rondoudou label without changing anyone else's networked outfit.
+        if (PlayerControl.LocalPlayer != null)
+        {
+            foreach (PlayerControl candidate in candidates)
+            {
+                if (candidate.PlayerId != PlayerControl.LocalPlayer.PlayerId) continue;
+                selected = candidate;
+                break;
+            }
+        }
+
+        selected ??= candidates[new System.Random().Next(candidates.Count)];
         _playerId = selected.PlayerId;
         _usesRemaining = Options.RondoudouUses.GetInt();
 
