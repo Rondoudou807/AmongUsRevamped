@@ -334,6 +334,9 @@ namespace AmongUsRevamped
         public static OptionItem DisableSubmitScan;
         public static OptionItem DisableUploadData;
 
+        public static OptionItem RondoudouDuration;
+        public static OptionItem RondoudouUses;
+
         public static OptionItem TabGroupHNS;
         public static OptionItem NumSeekers;
 
@@ -969,6 +972,12 @@ namespace AmongUsRevamped
                 .SetParent(DisableMiscMixedTasks);
             DisableUploadData = BooleanOptionItem.Create(23706, Translator.Get("disableUploadData"), false, TabGroup.ModSettings, false)
                 .SetParent(DisableMiscMixedTasks);
+
+            _ = TextOptionItem.Create(24000, Translator.Get("rondoudouSettings"), TabGroup.ModSettings).SetColor(new Color32(255, 143, 211, byte.MaxValue));
+            RondoudouDuration = IntegerOptionItem.Create(24001, Translator.Get("rondoudouDuration"), new(5, 60, 1), 20, TabGroup.ModSettings, false)
+                .SetValueFormat(OptionFormat.Seconds);
+            RondoudouUses = IntegerOptionItem.Create(24002, Translator.Get("rondoudouUses"), new(1, 5, 1), 3, TabGroup.ModSettings, false)
+                .SetValueFormat(OptionFormat.Times);
 
             IsLoaded = true;
         }
