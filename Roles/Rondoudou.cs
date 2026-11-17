@@ -69,8 +69,7 @@ internal static class RondoudouRole
 
         // This label is a local-only visual cue. No cosmetic/name RPC is sent,
         // so other players continue to see the player's ordinary outfit and name.
-        selected.cosmetics.nameText.text =
-            $"<color=#ff8fd6>{selected.Data.PlayerName}</color>\n<color=#ff8fd6>Rondoudou</color>";
+        UpdateLocalLabel(selected);
 
         Logger.Info($"Rondoudou assigned to {selected.Data.PlayerName} ({selected.PlayerId}) with {_usesRemaining} uses.", "Rondoudou");
     }
@@ -198,7 +197,7 @@ internal static class RondoudouRole
             return;
 
         player.cosmetics.nameText.text =
-            $"<color=#ff8fd6>{player.Data.PlayerName}</color>\\n<color=#ff8fd6>Rondoudou ({_usesRemaining}/{Options.RondoudouUses.GetInt()})</color>";
+            $"<color=#ff8fd6>{player.Data.PlayerName}</color>\n<color=#ff8fd6>Rondoudou ({_usesRemaining}/{Options.RondoudouUses.GetInt()})</color>";
     }
 
     private static void Broadcast(string message)
