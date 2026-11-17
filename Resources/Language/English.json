@@ -399,6 +399,8 @@
 
   "tabGroupNoKcd": "0 Kill Cooldown",
   "disablePeacePeriod": "Disable 5s Peace Period",
-  "disableLobbyInfo": "Disable Lobby Info"
-
+  "disableLobbyInfo": "Disable Lobby Info",
+  "rondoudouSettings": "Vanilla Role: Rondoudou",
+  "rondoudouDuration": "Rondoudou effect duration",
+  "rondoudouUses": "Rondoudou uses per game",
 }
