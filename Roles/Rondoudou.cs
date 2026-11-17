@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AmongUs.GameOptions;
+using InnerNet;
 using UnityEngine;
 
 namespace AmongUsRevamped;
