@@ -20,9 +20,7 @@ internal static class RondoudouRole
     private static float _timeRemaining;
     private static int _lastBroadcastSecond = -1;
 
-    private static float _oldPlayerSpeed;
     private static float _oldCrewVision;
-    private static float _oldImpostorVision;
 
     public static bool IsRondoudou(PlayerControl player)
         => player != null && _playerId != NoPlayer && player.PlayerId == _playerId;
@@ -139,22 +137,20 @@ internal static class RondoudouRole
             player.RpcRejectShapeshift();
             return;
         }
-        _oldPlayerSpeed = options.GetFloat(FloatOptionNames.PlayerSpeedMod);
         _oldCrewVision = options.GetFloat(FloatOptionNames.CrewLightMod);
-        _oldImpostorVision = options.GetFloat(FloatOptionNames.ImpostorLightMod);
 
         _effectActive = true;
         _timeRemaining = Options.RondoudouDuration.GetInt();
         _lastBroadcastSecond = (int)Math.Ceiling(_timeRemaining);
 
-        // These are ordinary game options synchronized by the host. This freezes
-        // players and darkens vision for vanilla clients without a custom protocol.
-        options.SetFloat(FloatOptionNames.PlayerSpeedMod, 0f);
+        // Host-only compatibility: only the shared Crewmate vision multiplier is
+        // changed. Impostor vision is deliberately left untouched so Rondoudou
+        // (an Impostor) is never blinded by its own ability. Vanilla game options
+        // cannot selectively freeze players or mute remote clients.
         options.SetFloat(FloatOptionNames.CrewLightMod, 0.01f);
-        options.SetFloat(FloatOptionNames.ImpostorLightMod, 0.01f);
         OptionManager.SyncGameOptions();
 
-        Broadcast($"Rondoudou activated its power: everyone is frozen for {_lastBroadcastSecond} seconds.");
+        Broadcast($"Rondoudou activated its power: Crewmate vision is reduced for {_lastBroadcastSecond} seconds. Impostors keep their vision.");
         Logger.Info($"Rondoudou activated. Uses remaining: {_usesRemaining}. Duration: {_timeRemaining}s.", "Rondoudou");
         player.RpcRejectShapeshift();
     }
@@ -196,14 +192,12 @@ internal static class RondoudouRole
         var options = Main.NormalOptions;
         if (options != null)
         {
-            options.SetFloat(FloatOptionNames.PlayerSpeedMod, _oldPlayerSpeed);
             options.SetFloat(FloatOptionNames.CrewLightMod, _oldCrewVision);
-            options.SetFloat(FloatOptionNames.ImpostorLightMod, _oldImpostorVision);
             OptionManager.SyncGameOptions();
         }
 
         if (broadcast)
-            Broadcast("Rondoudou's effect has ended. Movement and vision are restored.");
+            Broadcast("Rondoudou's effect has ended. Crewmate vision is restored.");
     }
 
     public static bool HandleAbilityCommand(PlayerControl player)
