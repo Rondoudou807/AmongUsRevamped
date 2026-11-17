@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using AmongUs.GameOptions;
 using InnerNet;
 using UnityEngine;
@@ -34,9 +34,15 @@ internal static class RondoudouRole
 
         if (_playerId != NoPlayer)
         {
-            var previous = PlayerControl.AllPlayerControls.FirstOrDefault(p => p != null && p.PlayerId == _playerId);
-            if (previous != null && previous.Data != null && previous.cosmetics != null && previous.cosmetics.nameText != null)
+            foreach (PlayerControl previous in PlayerControl.AllPlayerControls)
+            {
+                if (previous == null || previous.PlayerId != _playerId || previous.Data == null ||
+                    previous.cosmetics == null || previous.cosmetics.nameText == null)
+                    continue;
+
                 previous.cosmetics.nameText.text = previous.Data.PlayerName;
+                break;
+            }
         }
 
         _playerId = NoPlayer;
@@ -56,15 +62,18 @@ internal static class RondoudouRole
 
         // The player is still a normal Impostor-aligned Shapeshifter.
         // The vanilla role count/chance is configured in the game's "Vanilla Roles" tab.
-        var candidates = PlayerControl.AllPlayerControls
-            .Where(p => p != null && p.Data != null && !p.Data.IsDead &&
-                        p.Data.RoleType == RoleTypes.Shapeshifter)
-            .ToArray();
+        var candidates = new List<PlayerControl>();
+        foreach (PlayerControl candidate in PlayerControl.AllPlayerControls)
+        {
+            if (candidate != null && candidate.Data != null && !candidate.Data.IsDead &&
+                candidate.Data.RoleType == RoleTypes.Shapeshifter)
+                candidates.Add(candidate);
+        }
 
-        if (candidates.Length == 0)
+        if (candidates.Count == 0)
             return;
 
-        var selected = candidates[new System.Random().Next(candidates.Length)];
+        var selected = candidates[new System.Random().Next(candidates.Count)];
         _playerId = selected.PlayerId;
         _usesRemaining = Options.RondoudouUses.GetInt();
 
