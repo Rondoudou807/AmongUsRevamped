@@ -34,8 +34,8 @@ internal static class RondoudouRole
         if (_playerId != NoPlayer)
         {
             var previous = PlayerControl.AllPlayerControls.FirstOrDefault(p => p != null && p.PlayerId == _playerId);
-            if (previous != null && previous.cosmetics != null && previous.cosmetics.nameText != null)
-                previous.cosmetics.nameText.text = previous.Data?.PlayerName ?? string.Empty;
+            if (previous != null && previous.Data != null && previous.cosmetics != null && previous.cosmetics.nameText != null)
+                previous.cosmetics.nameText.text = previous.Data.PlayerName;
         }
 
         _playerId = NoPlayer;
@@ -82,28 +82,27 @@ internal static class RondoudouRole
 
         if (Utils.IsActive(SystemTypes.Comms))
         {
-            player.Notify("Rondoudou cannot use its power while Communications is sabotaged.");
-            player.RpcResetAbilityCooldown();
+            Broadcast("The power cannot be activated during Communications sabotage.");
+            player.RpcRejectShapeshift();
             return;
         }
 
         if (_effectActive)
         {
-            player.Notify("Rondoudou's effect is already active.");
-            player.RpcResetAbilityCooldown();
+            player.RpcRejectShapeshift();
             return;
         }
 
         if (_usesRemaining <= 0)
         {
-            player.Notify("Rondoudou has no uses remaining.");
-            player.RpcResetAbilityCooldown();
+            Broadcast("Rondoudou has no uses remaining.");
+            player.RpcRejectShapeshift();
             return;
         }
 
         if (!Utils.InGame || Utils.IsMeeting || !ShipStatus.Instance)
         {
-            player.RpcResetAbilityCooldown();
+            player.RpcRejectShapeshift();
             return;
         }
 
@@ -127,7 +126,7 @@ internal static class RondoudouRole
 
         Broadcast($"Rondoudou activated its power: everyone is frozen for {_lastBroadcastSecond} seconds.");
         Logger.Info($"Rondoudou activated. Uses remaining: {_usesRemaining}. Duration: {_timeRemaining}s.", "Rondoudou");
-        player.RpcResetAbilityCooldown();
+        player.RpcRejectShapeshift();
     }
 
     public static void Tick(float deltaTime)
@@ -146,7 +145,7 @@ internal static class RondoudouRole
 
         // Vanilla clients receive shared countdown checkpoints in chat. The
         // host-only build cannot draw a custom centre-screen HUD on unmodded clients.
-        if (seconds != _lastBroadcastSecond && seconds is 10 or 5 or 3 or 2 or 1)
+        if (seconds != _lastBroadcastSecond && seconds > 0 && seconds % 5 == 0)
         {
             _lastBroadcastSecond = seconds;
             Broadcast($"Rondoudou effect: {seconds} seconds remaining.");
