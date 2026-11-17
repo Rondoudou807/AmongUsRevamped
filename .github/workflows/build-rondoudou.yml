@@ -30,12 +30,14 @@ jobs:
             -o /tmp/AUR.v2.3.0.Main.zip
           mkdir -p package
           unzip -q /tmp/AUR.v2.3.0.Main.zip -d package
-          test -d package/BepInEx/plugins
+          PLUGINS_DIR=$(find package -type d -path '*/BepInEx/plugins' -print -quit)
+          test -n "$PLUGINS_DIR"
+          echo "PLUGINS_DIR=$PLUGINS_DIR" >> "$GITHUB_ENV"
 
       - name: Replace official plugin with Rondoudou build
         run: |
-          find package/BepInEx/plugins -maxdepth 1 -type f -iname 'AUR*.dll' -delete
-          cp bin/Release/net6.0/AmongUsRevamped.dll package/BepInEx/plugins/AUR.dll
+          find "$PLUGINS_DIR" -maxdepth 1 -type f -iname 'AUR*.dll' -delete
+          cp bin/Release/net6.0/AmongUsRevamped.dll "$PLUGINS_DIR/AUR.dll"
           cat > package/LISEZ-MOI-RONDOUDOU.txt <<'EOF'
           Among Us Revamped 2.3.0 + prototype Rondoudou
           
