@@ -1,4 +1,4 @@
-name: Build Revamped
+name: Build Revamped with Rondoudou
 
 on:
   push:
@@ -23,10 +23,45 @@ jobs:
       - name: Build AmongUsRevamped
         run: dotnet build AmongUsRevamped.csproj --configuration Release --verbosity minimal
 
-      - name: Upload DLL
+      - name: Download official Revamped full installer
+        run: |
+          curl -fL --retry 3 \
+            https://github.com/ApeMV/AmongUsRevamped/releases/download/2.3.0/AUR.v2.3.0.Main.zip \
+            -o /tmp/AUR.v2.3.0.Main.zip
+          mkdir -p package
+          unzip -q /tmp/AUR.v2.3.0.Main.zip -d package
+          test -d package/BepInEx/plugins
+
+      - name: Replace official plugin with Rondoudou build
+        run: |
+          find package/BepInEx/plugins -maxdepth 1 -type f -iname 'AUR*.dll' -delete
+          cp bin/Release/net6.0/AmongUsRevamped.dll package/BepInEx/plugins/AUR.dll
+          cat > package/LISEZ-MOI-RONDOUDOU.txt <<'EOF'
+          Among Us Revamped 2.3.0 + prototype Rondoudou
+          
+          Installation:
+          1. Fermez Among Us.
+          2. Extrayez tout le contenu de cette archive dans le dossier du jeu.
+          3. Acceptez le remplacement des fichiers si Windows le demande.
+          
+          Le prototype Rondoudou utilise le rôle vanilla Shapeshifter comme emplacement et le bouton Shapeshift.
+          Valeurs par défaut : 3 utilisations, durée de 20 secondes.
+          L'activation est bloquée pendant le sabotage Communications.
+          
+          Limites connues du prototype host-only :
+          - La vision réduite touche tous les équipiers, pas une cible individuelle.
+          - Les Imposteurs gardent leur vision.
+          - Il n'y a pas encore d'immobilisation sélective, de coupure audio distante,
+            de véritable sprite Rondoudou ni de compte à rebours central.
+          - Le comportement en partie réelle reste à tester.
+          EOF
+          cd package
+          zip -qr ../AmongUsRevamped-2.3.0-Rondoudou-FULL.zip .
+
+      - name: Upload complete installation package
         uses: actions/upload-artifact@v4
         with:
-          name: AmongUsRevamped-Rondoudou
-          path: bin/Release/net6.0/AmongUsRevamped.dll
+          name: AmongUsRevamped-2.3.0-Rondoudou-FULL
+          path: AmongUsRevamped-2.3.0-Rondoudou-FULL.zip
           if-no-files-found: error
           retention-days: 7
