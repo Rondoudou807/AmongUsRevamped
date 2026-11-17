@@ -31,6 +31,13 @@ internal static class RondoudouRole
         if (_effectActive)
             EndEffect(broadcast: false);
 
+        if (_playerId != NoPlayer)
+        {
+            var previous = PlayerControl.AllPlayerControls.FirstOrDefault(p => p != null && p.PlayerId == _playerId);
+            if (previous != null && previous.cosmetics != null && previous.cosmetics.nameText != null)
+                previous.cosmetics.nameText.text = previous.Data?.PlayerName ?? string.Empty;
+        }
+
         _playerId = NoPlayer;
         _usesRemaining = 0;
         _timeRemaining = 0f;
@@ -56,7 +63,7 @@ internal static class RondoudouRole
         if (candidates.Length == 0)
             return;
 
-        var selected = candidates[new Random().Next(candidates.Length)];
+        var selected = candidates[new System.Random().Next(candidates.Length)];
         _playerId = selected.PlayerId;
         _usesRemaining = Options.RondoudouUses.GetInt();
 
