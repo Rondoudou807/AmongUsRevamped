@@ -1,0 +1,75 @@
+name: Build Revamped with Rondoudou
+
+on:
+  push:
+    branches:
+      - rondoudou-role-hostenly
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Build AmongUsRevamped
+        run: dotnet build AmongUsRevamped.csproj --configuration Release --verbosity minimal
+
+      - name: Download official Revamped full installer
+        run: |
+          curl -fL --retry 3 \
+            https://github.com/ApeMV/AmongUsRevamped/releases/download/2.3.0/AUR.v2.3.0.Main.zip \
+            -o /tmp/AUR.v2.3.0.Main.zip
+          mkdir -p package
+          unzip -q /tmp/AUR.v2.3.0.Main.zip -d package
+          PLUGINS_DIR=$(find package -type d -path '*/BepInEx/plugins' -print -quit)
+          test -n "$PLUGINS_DIR"
+          echo "PLUGINS_DIR=$PLUGINS_DIR" >> "$GITHUB_ENV"
+
+      - name: Replace official plugin with Rondoudou build
+        run: |
+          find "$PLUGINS_DIR" -maxdepth 1 -type f -iname 'AUR*.dll' -delete
+          cp bin/Release/net6.0/AmongUsRevamped.dll "$PLUGINS_DIR/AUR.dll"
+          cat > package/LISEZ-MOI-RONDOUDOU.txt <<'EOF'
+          Among Us Revamped 2.3.0 + prototype Rondoudou
+
+          Installation:
+          1. Fermez Among Us.
+          2. Extrayez tout le contenu de cette archive dans le dossier du jeu.
+          3. Acceptez le remplacement des fichiers si Windows le demande.
+
+          Fonctionnement :
+          - Le rôle est attribué à un Shapeshifter vanilla.
+          - Le bouton Shapeshift choisit une cible, mais son changement de tenue est annulé.
+          - Le pseudo de la cible devient « Rondoudou » pendant la durée configurée,
+            puis son pseudo original est restauré par le RPC vanilla SetName.
+          - Un petit badge sprite apparaît au-dessus de la cible sur les clients qui ont le mod.
+          - La vision, la vitesse et le son ne sont pas modifiés.
+          - Valeurs par défaut : 3 utilisations, durée de 20 secondes.
+          - L'activation est bloquée pendant le sabotage Communications.
+
+          Compatibilité :
+          - Le changement de pseudo utilise le RPC vanilla, donc les joueurs sans mod
+            voient aussi le pseudo temporaire.
+          - Le badge graphique ne s'affiche que chez les joueurs qui ont cette version
+            du mod installée.
+          - Le fonctionnement doit encore être vérifié en partie réelle.
+          EOF
+          cd package
+          zip -qr ../AmongUsRevamped-2.3.0-Rondoudou-FULL.zip .
+
+      - name: Upload complete installation package
+        uses: actions/upload-artifact@v4
+        with:
+          name: AmongUsRevamped-2.3.0-Rondoudou-FULL
+          path: AmongUsRevamped-2.3.0-Rondoudou-FULL.zip
+          if-no-files-found: error
+          retention-days: 7
