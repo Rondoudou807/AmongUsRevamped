@@ -40,22 +40,28 @@ jobs:
           cp bin/Release/net6.0/AmongUsRevamped.dll "$PLUGINS_DIR/AUR.dll"
           cat > package/LISEZ-MOI-RONDOUDOU.txt <<'EOF'
           Among Us Revamped 2.3.0 + prototype Rondoudou
-          
+
           Installation:
           1. Fermez Among Us.
           2. Extrayez tout le contenu de cette archive dans le dossier du jeu.
           3. Acceptez le remplacement des fichiers si Windows le demande.
-          
-          Le prototype Rondoudou utilise le rôle vanilla Shapeshifter comme emplacement et le bouton Shapeshift.
-          Valeurs par défaut : 3 utilisations, durée de 20 secondes.
-          L'activation est bloquée pendant le sabotage Communications.
-          
-          Limites connues du prototype host-only :
-          - La vision réduite touche tous les équipiers, pas une cible individuelle.
-          - Les Imposteurs gardent leur vision.
-          - Il n'y a pas encore d'immobilisation sélective, de coupure audio distante,
-            de véritable sprite Rondoudou ni de compte à rebours central.
-          - Le comportement en partie réelle reste à tester.
+
+          Fonctionnement :
+          - Le rôle est attribué à un Shapeshifter vanilla.
+          - Le bouton Shapeshift choisit une cible, mais son changement de tenue est annulé.
+          - Le pseudo de la cible devient « Rondoudou » pendant la durée configurée,
+            puis son pseudo original est restauré par le RPC vanilla SetName.
+          - Un petit badge sprite apparaît au-dessus de la cible sur les clients qui ont le mod.
+          - La vision, la vitesse et le son ne sont pas modifiés.
+          - Valeurs par défaut : 3 utilisations, durée de 20 secondes.
+          - L'activation est bloquée pendant le sabotage Communications.
+
+          Compatibilité :
+          - Le changement de pseudo utilise le RPC vanilla, donc les joueurs sans mod
+            voient aussi le pseudo temporaire.
+          - Le badge graphique ne s'affiche que chez les joueurs qui ont cette version
+            du mod installée.
+          - Le fonctionnement doit encore être vérifié en partie réelle.
           EOF
           cd package
           zip -qr ../AmongUsRevamped-2.3.0-Rondoudou-FULL.zip .
