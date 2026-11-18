@@ -256,18 +256,18 @@ internal static class RondoudouRole
             using Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(BadgeResource);
             if (stream == null)
             {
-                Logger.Warn($"Embedded badge resource not found: {BadgeResource}", "Rondoudou");
+                Logger.Info($"Embedded badge resource not found: {BadgeResource}", "Rondoudou");
                 return null;
             }
 
-            byte[] bytes = new byte[stream.Length];
+            byte[] bytes = new byte[(int)stream.Length];
             stream.Read(bytes, 0, bytes.Length);
 
             var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             if (!ImageConversion.LoadImage(texture, bytes))
             {
                 UnityEngine.Object.Destroy(texture);
-                Logger.Warn("Could not decode Rondoudou role badge.", "Rondoudou");
+                Logger.Info("Could not decode Rondoudou role badge.", "Rondoudou");
                 return null;
             }
 
@@ -279,7 +279,7 @@ internal static class RondoudouRole
         }
         catch (Exception exception)
         {
-            Logger.Error($"Could not load Rondoudou role badge: {exception}", "Rondoudou");
+            Logger.Info($"Could not load Rondoudou role badge: {exception}", "Rondoudou");
             return null;
         }
     }
