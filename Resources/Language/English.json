@@ -1,6 +1,5 @@
 {
   "LanguageID": "0",
-
   "gameMaster": "Game Master",
   "showFPS": "Show FPS",
   "autoStart": "Auto Start",
@@ -9,11 +8,8 @@
   "disableInfoWhenDead": "Hide Info When Dead",
   "disableCommandHelper": "Disable Command Helper",
   "disableCompatibilityWarning": "Disable Compatibility Warning",
-
-  "gameMasterWarning":"You will now spectate games until Game Master is turned off. WARNING: Role assigning might be inaccurate if this setting is enabled.",
-
+  "gameMasterWarning": "You will now spectate games until Game Master is turned off. WARNING: Role assigning might be inaccurate if this setting is enabled.",
   "cancelStartCountdown": "Start countdown canceled",
-  
   "invalidFriendCodeKick": "{0} was kicked for having an invalid Friendcode",
   "invalidFriendCodeBan": "{0} was banned for having an invalid Friendcode",
   "language": "Language (Requires Restart)",
@@ -36,11 +32,9 @@
   "autoKickStartAsBan": "Ban Instead Of Kick",
   "autoKickStartTimes": "Sent Start Words To Kick Player",
   "autoKickStartStrength": "Strict detection mode",
-
   "tabGroupAutomation": "Automation",
   "autoSendGameInfo": "Automatically send winner info",
   "autoRejoinLobby": "Automatically Rejoin Lobby",
-
   "tabGroupAutostart": "Autohost",
   "autoStartTimer": "Countdown For Auto Start",
   "waitAutoStart": "Auto Start After",
@@ -49,7 +43,6 @@
   "public": "Automatically Publicize New Lobby",
   "enableJoinMessages": "Enable Welcome Messages",
   "messagePerPlayerNum": "Message Per Amount Of Joins",
-
   "tabGroupMisc": "Experimental",
   "startCountdown": "Default Starting Countdown",
   "colorCommandLevel": "Who Can use Color Commands",
@@ -57,10 +50,8 @@
   "noGameEnd": "No Game End",
   "mapVoteDuration": "Map Vote Duration",
   "modeVoteDuration": "Gamemode Vote Duration",
-
   "tabGroupDeniedWords": "Denied Words",
   "enableDeniedWords": "Kick Players Who Say Denied Words",
-
   "tabGroupAccess": "Access Levels",
   "slashColorCmd": "Who Can Use /color",
   "slashRolesAndGamemodeCmd": "Who Can Use /r & Templates",
@@ -70,13 +61,10 @@
   "slashBanCmd": "Who Can Use /ban & /cban",
   "slashEndMeetingCmd": "Who Can Use /endmeeting",
   "slashStartAndEndGameCmd": "Who Can Use /start & /endgame",
-
   "tabGroupCrewmate": "Crewmate Roles",
   "tabGroupNeutral": "Neutral Roles",
   "tabGroupImpostor": "Impostor Roles",
-
   "tabGroupStandard": "Standard",
-
   "tabGroupHNS": "Hide and Seek",
   "numSeekers": "# Seekers",
   "tabGroup0Kcd": "0 Kill Cooldown",
@@ -98,7 +86,6 @@
   "snsDisableHeli": "Disable Crash Course Sabotage",
   "snsDisableMushroomMixup": "Disable Mushroom Mixup Sabotage",
   "snsDisableCloseDoor": "Disable SnS Door Sabotages",
-
   "tabGroupCustomizeSabotages": "Customize Sabotages",
   "customizeSabotages": "Enable Sabotage Customizations",
   "sabotageCooldown": "Critical Sabotage Cooldown",
@@ -110,12 +97,10 @@
   "airshipReactorDuration": "Airship Reactor Duration",
   "fungleReactorDuration": "Fungle Reactor Duration",
   "fungleMushroomMixupDuration": "Fungle Mixup Duration",
-  
   "tabGroupSpeedrun": "Speedrun",
   "speedrunSettingsOverride": "Auto Update Settings",
   "gameAutoEndsAfter": "Game automatically ends after",
   "engineerMode": "Everyone Is Engineer",
-
   "tabGroupSabotages": "Disable Sabotages",
   "deadImpostorsCanSabotage": "Dead Impostors Can Sabotage",
   "disableSabotage": "Disable Critical Sabotages",
@@ -126,7 +111,6 @@
   "disableHeli": "Disable Crash Course Sabotage",
   "disableMushroomMixup": "Disable Mushroom Mixup Sabotage",
   "disableCloseDoor": "Disable Door Sabotages",
-
   "tabGroupGameplayGeneral": "General",
   "shieldFirstDeath": "Shield Player Who Died First",
   "shieldFirstDeathDuration": "Shield Duration",
@@ -138,7 +122,6 @@
   "decontaminationTimeOnPolus": "Polus Decon Duration",
   "decontaminationDoorOpenTimeOnPolus": "Polus Door Open Duration",
   "disableSporeTrigger": "Disable Spores On The Fungle",
-
   "disableDevices": "Disable Devices",
   "disableSkeldDevices": "Disable Skeld Devices",
   "disableSkeldAdmin": "Disable Skeld Admin",
@@ -157,19 +140,16 @@
   "disableAirshipVital": "Disable Airship Vitals",
   "disableFungleDevices": "Disable Fungle Devices",
   "disableFungleVital": "Disable Fungle Vitals",
-
   "tabGroupTasks": "Tasks",
   "allPlayersSameTasks": "Everyone Has Same Tasks",
   "overrideTaskSettings": "Disable Tasks",
   "taskPercentNeededToWin": "% Tasks completed for crewmates to win",
-
   "disableMiraTasks": "Disable Mira HQ Tasks",
   "disableBuyBeverage": "Disable Buy Beverage",
   "disableMeasureWeather": "Disable Measure Weather",
   "disableProcessData": "Disable Process Data",
   "disableRunDiagnostics": "Disable Run Diagnostics",
   "disableSortSamples": "Disable Sort Samples",
-
   "disablePolusTasks": "Disable Polus Tasks",
   "disableActivateWeatherNodes": "Disable Activate Weather Nodes",
   "disableAlignTelescope": "Disable Align Telescope",
@@ -179,7 +159,6 @@
   "disableRebootWifi": "Disable Reboot Wifi",
   "disableRepairDrill": "Disable Repair Drill",
   "disableScanBoardingPass": "Disable Scan Boarding Pass",
-
   "disableAirshipTasks": "Disable Airship Tasks",
   "disableCleanToilet": "Disable Clean Toilet",
   "disableDecontaminate": "Disable Decontaminate",
@@ -196,7 +175,6 @@
   "disableSortRecords": "Disable Sort Records",
   "disableStartFans": "Disable Start Fans",
   "disableUnlockSafe": "Disable Unlock Safe",
-
   "disableFungleTasks": "Disable Fungle Tasks",
   "disableBuildSandcastle": "Disable Build Sandcastle",
   "disableCatchFish": "Disable Catch Fish",
@@ -216,12 +194,10 @@
   "disableRoastMarshmallow": "Disable Roast Marshmallow",
   "disableThrowFisbee": "Disable Throw Fisbee",
   "disableFindSignal": "Disable Find Signal",
-
   "disableMiscCommonTasks": "Disable Global Common Tasks",
   "disableEnterIdCode": "Disable Enter Id Code",
   "disableFixWiring": "Disable Fix Wiring",
   "disableSwipeCard": "Disable Swipe Card",
-
   "disableMiscShortTasks": "Disable Global Short Tasks",
   "disableAssembleArtifact": "Disable Assemble Artifact",
   "disableChartCourse": "Disable Chart Course",
@@ -234,7 +210,6 @@
   "disableStabilizeSteering": "Disable Stabilize Steering",
   "disableStoreArtifacts": "Disable Store Artifacts",
   "disableUnlockManifolds": "Disable Unlock Manifolds",
-
   "disableMiscLongTasks": "Disable Global Long Tasks",
   "disableAlignEngineOutput": "Disable Align Engine Output",
   "disableClearAsteroids": "Disable Clear Asteroids",
@@ -243,7 +218,6 @@
   "disableReplaceWaterJug": "Disable Replace Water Jug",
   "disableStartReactor": "Disable Start Reactor",
   "disableWaterPlants": "Disable Water Plants",
-
   "disableMiscMixedTasks": "Disable Global Mixed Tasks",
   "disableCalibrateDistributor": "Disable Calibrate Distributor",
   "disableDivertPower": "Disable Divert Power",
@@ -251,11 +225,8 @@
   "disableFuelEngines": "Disable Fuel Engines",
   "disableSubmitScan": "Disable Submit Scan",
   "disableUploadData": "Disable Upload Data",
-
   "allCommandsFull": "<b>ALL COMMANDS:</b>\n\n<b>/help</b>\nShow this message.\n<b>/aur, /socials</b>\nSend Among Us Revamped social links.\n\n<b>/r</b>\nSend current mode description.\n<b>/l, /lastgame</b>\nSend last winner info.\n\n<b>/0kc, /0killcooldown</b>\nSend 0 Kill Cooldown mode description.\n<b>/sns, /shiftandseek</b>\nSend Shift and Seek mode description.\n<b>/sns2</b>\nSend extended Shift and Seek mode description\n<b>/pns, /poofandseek</b>\nSend Poof and Seek mode description.\n<b>/sp, /speedrun</b>\nSend Speedrun mode description.\n\n/<b>kick, /ban</b>\nKick or ban a player by name.\n<b>/ckick, /cban</b>\nKick or ban a player by color.\n\n<b>/vip /moderator /admin</b>\nAdd a player as VIP, Moderator, or Admin.\n<b>/removevip /removemoderator /removeadmin</b>\nRemove VIP, Moderator, or Admin from a player.\n\n<b>/eg, /endgame</b>\nEnd the current game.\n<b>/em, /endmeeting</b>\nEnd the current meeting.\n<b>/s, /start</b>\nBegin the game starting countdown.\n\n<b>/t {template}</b>\nSend a template from AUR-DATA/templates.txt.\n\n<b>/col, /color, /colour</b>\nSet your color, can be used to bypass limits.\n\n<b>/seeker {name}</b>\nForce someone as Seeker in HnS.\n<b>/seekers</b>\nShow forced Seeker list.\n<b>/clearseeker</b>\nClear forced Seeker list.\n\n<b>/mapvote</b>\nStarts a customizable map vote maps.\n<b>/gmvote</b>\nStarts a customizable gamemode vote.\n\n<b>/private</b>\nSets lobby to private.\n<b>/public</b>\nSets lobby to public.",
-
   "translationReloaded": "Your file has successfully been reset.\nTo apply all changes, restart your game.",
-
   "templateWelcome": "# In this file you can add Templates, which serve as easy copy-paste alternatives.\n# To create a template, write a new line with the same formatting as the test Template below.\n# Note that Templates can't be longer than 120 characters and can't contain special characters. Having so will kick you.\n\ntest: this is an example template. Type '/t test' to see it.\n\nwelcome: Welcome! This lobby uses Among Us Revamped {ModVersion} by MV. Enjoy!",
   "moderatorWelcome": "# In this file you can add Moderators by Friendcode.\n# If you add someone, they will gain a purple name in-game.\n# Go to 'System Settings' in-game to customize Moderator permissions. Below is a Friendcode example.\n\nfriendcode#0000",
   "vipWelcome": "# In this file you can add VIP's by Friendcode.\n# If you add someone, they will gain a yellow name in-game.\n# Go to 'System Settings' in-game to customize VIP permissions. Below is a Friendcode example.\n\nfriendcode#0000\n",
@@ -264,12 +235,9 @@
   "banwordWelcome": "# In this file you can set denied words, automatically kicking anyone in-game who sends words listed here.\n# Make sure to separate words by using new lines.",
   "bannameWelcome": "# In this file you can set denied names, automatically kicking anyone in-game who uses names listed here.\n# Make sure to separate names by using new lines.",
   "startWordsWelcome": "# In this file you can set the detected words for 'Kick Players Who Say Start'.\n# 'Strict Detection Mode' OFF = Messages have to exactly match words. 'Strict Detection Mode' ON = Messages only have to contain words.\n# You can put unrelated words in as well in order to detect them only in lobby.\n\nstart\nbegin\ncommence",
-
   "noGameEndWarning": "WARNING: No Game End is enabled",
   "gameMasterWarningTwo": "WARNING: Game Master is enabled",
-
   "tooLongTemplate": "Your Template is longer than 120 characters and would kick you upon sending. Please reduce the length.",
-
   "vipAdd": "Successfully added {0} as VIP.",
   "moderatorAdd": "Successfully added {0} as Moderator.",
   "adminAdd": "Successfully added {0} as Admin.",
@@ -277,7 +245,6 @@
   "moderatorRemove": "Successfully removed Moderator from {0}.",
   "adminRemove": "Successfully removed Admin from {0}.",
   "permFail": "Could not find user '{0}'. Did you write it correctly?",
-
   "helpDesc": "Show all commands and what they do.",
   "snsDesc": "Send Shift and Seek gamemode Description.",
   "snsTwoDesc": "Send Shift and Seek extended Description.",
@@ -313,60 +280,47 @@
   "modeVoteDesc": "Starts a vote between selected gamemodes.",
   "privateDesc": "Changes lobby visibility to private.",
   "publicDesc": "Changes lobby visibility to public.",
-
   "banWordKick": "{0} was kicked because they sent a word in DeniedWords.txt {1} time(s)",
   "startWordKick": "{0} was kicked because they sent a word in StartWords.txt {1} time(s)",
   "banWordBan": "{0} was banned because they sent a word in DeniedWords.txt {1} time(s)",
   "startWordBan": "{0} was banned because they sent a word in StartWords.txt {1} time(s)",
-
   "pluginWarning": "<color=red><size=5><b>WARNING:</color></b></size>\n<size=3><b>You have 2 or more detected Plugins.</size></b>\nAmong Us Revamped is not compatible with most mods.\nIf you find bugs, they are most likely due to incompatibility.",
-
   "systemSettings": "System Settings",
   "moderationSettings": "Moderation Settings",
   "gameplaySettings": "Gameplay Settings",
   "gamemodeSettings": "Gamemode Settings",
-
   "systemSettingsDesc": "Quality settings to improve comfort and testing.",
   "moderationSettingsDesc": "Moderation settings to combat toxicity and misconduct.",
   "gameplaySettingsDesc": "Gameplay settings to improve the in-game experience.",
   "gamemodeSettingsDesc": "Situational settings to apply for specific gamemodes.",
-
   "everyone": "Everyone",
   "vipAndAbove": "<color=yellow>VIP</color> And Above",
   "moderatorAndAbove": "<color=purple>Moderator</color> And Above",
   "admin": "<color=red>Admin</color>",
   "onlyYou": "Only You",
-
   "seekers": "Seekers: ",
   "clearedSeekers": "Successfully cleared the manual Seeker list.",
-
   "rehostSuccess": "Successfully rehosted a lobby",
-
   "kick": "Kick",
   "ban": "Ban",
   "notifyMe": "Notify Me",
-
   "tabGroupAfk": "AFK Detection",
   "enableAfkDetection": "Enable AFK Detection",
   "afkTimer": "Detection Threshold",
   "afkPenalty": "AFK Penalty",
   "onlyDetectSpawn": "Only Detect Players At Spawn",
-
   "afkNotify": "{0} has been AFK for {1}s",
   "afkKick": "{0} has been AFK for {1}s, kicking user",
   "afkBan": "{0} has been AFK for {1}s, banning user",
-
   "automaticMapPoll": "Automatic /mapvote After Rejoining",
   "automaticAllMapPoll": "Automatic /allmapvote After Rejoining",
   "timeBeforeMapPoll": "Time Before Vote Starts",
   "automaticModePoll": "Automatic /gmvote After Rejoining",
-
   "pnsDisableSabotage": "Disable PnS Critical Sabotages",
   "pnsDisableCloseDoor": "Disable PnS Door Sabotages",
   "tabGroupPNS": "Poof and Seek",
   "badMoveTimeToSuicide": "Phantom Suicides After Visibly Moving For",
   "snsImpostorCanVent": "Impostors Can Vent",
-
   "tabGroupAnticheat": "Anticheat",
   "hackingPunishment": "Hacking Punishment",
   "detectBadRPC": "Detect Invalid RPC's",
@@ -376,7 +330,6 @@
   "detectBadKill": "Detect Invalid Kills",
   "detectBadAnimation": "Detect Invalid Animations",
   "detectBadMeeting": "Detect Invalid Meetings",
-
   "customizeMapVote": "Customize Map Votes",
   "includeSkeld": "Include Skeld",
   "includeMira": "Include Mira",
@@ -384,23 +337,19 @@
   "includeAirship": "Include Airship",
   "includeFungle": "Include Fungle",
   "includeDleks": "Include Dleks",
-
   "customizeModeVote": "Customize Gamemode Votes",
   "includeStandard": "Include Standard",
   "includeNoKillCooldown": "Include 0 Kill Cooldown",
   "includeShiftAndSeek": "Include Shift And Seek",
   "includePoofAndSeek": "Include Poof And Seek",
   "includeSpeedrun": "Include Speedrun",
-
   "tabGroupGameplayMapModifications": "Map Modifications",
-
   "disableChatModifier": "Disable Chat Modifications",
   "snsSuicideMode": "Disable Shield System",
-
   "tabGroupNoKcd": "0 Kill Cooldown",
   "disablePeacePeriod": "Disable 5s Peace Period",
   "disableLobbyInfo": "Disable Lobby Info",
   "rondoudouSettings": "Vanilla Role: Rondoudou",
-  "rondoudouDuration": "Rondoudou effect duration",
+  "rondoudouDuration": "Rondoudou name effect duration",
   "rondoudouUses": "Rondoudou uses per game"
 }
