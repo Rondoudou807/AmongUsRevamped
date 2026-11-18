@@ -20,7 +20,7 @@ internal static class RondoudouRole
 {
     private const byte NoPlayer = byte.MaxValue;
     private const string DisplayName = "Rondoudou";
-    private const string BadgeResource = "AmongUsRevamped.Resources.Images.RondoudouRoleBadge.png";
+    private const string BadgeResource = "AmongUsRevamped.Resources.Images.RondoudouRoleBadge.png.base64";
 
     private static byte _playerId = NoPlayer;
     private static byte _targetId = NoPlayer;
@@ -260,9 +260,11 @@ internal static class RondoudouRole
                 return null;
             }
 
-            byte[] bytes = new byte[(int)stream.Length];
-            stream.Read(bytes, 0, bytes.Length);
+            string encoded;
+            using (var reader = new StreamReader(stream))
+                encoded = reader.ReadToEnd();
 
+            byte[] bytes = Convert.FromBase64String(encoded);
             var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             if (!ImageConversion.LoadImage(texture, bytes))
             {
